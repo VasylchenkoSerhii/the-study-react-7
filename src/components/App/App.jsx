@@ -1,12 +1,19 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import CircleLoader from "react-spinners/CircleLoader";
-import { getContacts, getIsLoading, getError } from "redux/selectors";
+import {
+  getContacts,
+  getIsLoading,
+  getError
+} from "redux/selectors";
 import { fetchContacts } from "redux/operations";
-import { Container, Main } from "./App.styled";
+import { Container, Main, Overlay } from "./App.styled";
 import FormContacts from "../FormContacts/FormContacts";
 import ContactsList from "../ContactsList/ContactsList";
 import Filter from "../Filter/Filter";
+
 
 export default function App() {
   const contacts = useSelector(getContacts);
@@ -25,15 +32,23 @@ export default function App() {
       <Container>
         <FormContacts />
         <Filter />
-        <ContactsList />
+        {contacts.length > 0 && <ContactsList />}
       </Container>
       {isLoading && !error && (
-        <CircleLoader
-          color="#000"
-          size={150}
-          aria-label="Loading Spinner"
-         data-testid="loader"
-        />)}
+        <Overlay>
+          <CircleLoader
+            color="#000"
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </Overlay>)}
+      {error && toast(`${error.message}`)}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        theme="light"
+      />
     </Main>
   );
 };

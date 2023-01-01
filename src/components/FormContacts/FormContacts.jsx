@@ -2,7 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "redux/operations";
 import { getContacts } from "redux/selectors";
 import { Formik } from "formik";
-import { FormStyle, SectionForm, InputForm, Label, Error, FormBtn } from "./FormContacts.styled";
+import {
+    FormStyle,
+    SectionForm,
+    InputForm,
+    Label,
+    Error,
+    FormBtn
+} from "./FormContacts.styled";
 import * as yup from 'yup';
 
 const shema = yup.object().shape({
