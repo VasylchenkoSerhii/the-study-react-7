@@ -44,7 +44,6 @@ export default function FormContacts() {
             resetForm();
             return;
         }
-        console.log(values)
         dispatch(addContact(values));
         resetForm();
     };
