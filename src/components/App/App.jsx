@@ -35,7 +35,7 @@ export default function App() {
         {contacts.length > 0 && <ContactsList />}
         {isLoading && <Loader />}
       </Container>
-      {error && toast(`${error.message}`)}
+      {error && toast(`${error}`)}
       <ToastContainer
         position="top-right"
         autoClose={5000}
